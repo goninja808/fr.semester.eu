@@ -59,6 +59,7 @@ const PerCatPost = ({ state, actions, libraries }) => {
                               <Html2React html={post.title.rendered} />
                             </h2>
                           </Link> }
+                          {!(isNotHeader)? <BigImage src={`/static/images/placeholder.png`}/>:<span/>}
                           <Html2React html={post.excerpt.rendered} />
                         </div>
                       
@@ -86,6 +87,13 @@ const Illust = styled.img`
   border-radius: 25px;
   margin-right: 25px;
 `;
+
+const BigImage = styled.img`
+  max-width: 320px;
+  border-radius: 25px;
+  margin-right: 25px;
+`;
+
 
 const Container = styled.section`
   display: grid;
