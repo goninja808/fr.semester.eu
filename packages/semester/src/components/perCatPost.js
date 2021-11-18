@@ -45,7 +45,7 @@ const PerCatPost = ({ state, actions, libraries }) => {
   return data.isReady ? (
     <FlexContainer>
        <Container>
-          <HeadGroupCategory className="GroupCategory-article col-12 col-md-6 col-lg-4 align-self-strech" style={{ background_color: + 'aliceblue'}} >
+          <HeadGroupCategory className="GroupCategory-article col-12 col-md-6 col-lg-4 align-self-strech"  >
              <div className="GroupCategory-box col-md-12" > 
              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
              </div>

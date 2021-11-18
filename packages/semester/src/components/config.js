@@ -22,11 +22,10 @@ export const categoriesWidgetsHome = {
 }
 
  const RegionTagsHeaderPost = {
-  "Centre Val de Loire, Bourgogne-Franche-Comté": 46,
-  "Auvergne-Rhône-Alpes, Provence-Alpes-Côte d’Azur, Corse": 47,
-  "Hauts de France, Ile de de France, Grand Est": 52,
-  "DROM, Départements et Régions d’Outre-Mer": 49,
-  "Normandie Bretagne PaysdeLoire":50,
-  "Nouvelle Aquitaine, Occitanie":51
+  "Centre Val de Loire, Bourgogne-Franche-Comté": 1046,
+  "Auvergne-Rhône-Alpes, Provence-Alpes-Côte d’Azur, Corse": 1047,
+  "Hauts de France, Ile de de France, Grand Est": 1052,
+  "DROM, Départements et Régions d’Outre-Mer": 1049,
+  "Normandie Bretagne PaysdeLoire":1050,
+  "Nouvelle Aquitaine, Occitanie":1051
 }
-const tagsWidgetsEvent = 5;
