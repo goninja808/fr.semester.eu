@@ -45,7 +45,6 @@ const PerCatPost = ({ state, actions, libraries ,tagId}) => {
               {isNotHeader ? (<HeadingGroupCategory  className={`${category.slug}`}>  <Illust src={`/static/images/${category.slug}_picto.png`} title={category.link}/> {category.name}</HeadingGroupCategory>):(<span/>)}
               { isNotHeader? <PostCount>{posts.length} posts </PostCount> : <span/>}
                 <div className="GroupCategory-box col-md-12">
-
                 {posts.map((post, index) => (
                   <article key={index}>
                     <div>
