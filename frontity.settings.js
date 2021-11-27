@@ -47,7 +47,7 @@ const settings = {
               taxonomy: "record_cat",
               endpoint: "record_cat",
               postTypeEndpoint: "record"
-            }
+            } 
           ]
         }
       }
