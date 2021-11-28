@@ -58,9 +58,6 @@ const Theme = ({ state, actions, libraries }) => {
         <Switch>
           <Loading when={data.isFetching} />
           <PerCatPost when={data.isHome} tagId={tagId} />
-          {/* <List when={data.isArchive} /> 
-              <Page when={data.isPage} 
-          />*/}
           <ListRecords when={data.isRecordCat || data.isRecordArchive} />
           <List when={data.isArchive} />
           <Post when={data.isPostType} />

@@ -41,11 +41,10 @@ const PerCatPost = ({ state, actions, libraries ,tagId}) => {
     <FlexContainer>
        <Container> 
          {postsPerCategory.map(({ posts, category, isNotHeader }, index) => (
-            <CategoryGP key={index} className="GroupCategory col-12 align-self-strech">
-              {isNotHeader ? (<HeadingGroupCategory  className={`${category.slug}`}>  <Illust src={`/static/images/${category.slug}_picto.png`} title={category.link}/> {category.name}</HeadingGroupCategory>):(<span/>)}
+            <CategoryGP key={index} className={`GroupCategory col-12 align-self-strech  count${posts.length}`} >
+              <HeadingGroupCategory  className={`${category.slug} `}>  <Illust src={`/static/images/${category.slug}_picto.png`} title={category.link}/> {category.name}</HeadingGroupCategory>
                 <div className="GroupCategory-box col-md-12">
-                {posts.length} posts
-                {posts.map((post, index) => (
+                 {posts.map((post, index) => (
                   <article key={index}>
                     <div>
                         <div px={2}>
@@ -54,7 +53,7 @@ const PerCatPost = ({ state, actions, libraries ,tagId}) => {
                            <Html2React html={post.title.rendered} /> 
                             </h2>
                           </Link> }
-                          { !(isNotHeader) ? <HeaderMedia id={post.featured_media} /> : <span/>}
+                          { !(isNotHeader) ? <HeaderMedia id={post.featured_media} /> : null}
                           <Html2React html={post.excerpt.rendered} />
                         </div>
                       
@@ -64,8 +63,9 @@ const PerCatPost = ({ state, actions, libraries ,tagId}) => {
                   </div>
                   {isNotHeader?<Link link={category.link}>
                   <p>&gt;&gt; See more <strong>{category.name}</strong> related posts </p>
-                </Link>:<span/>}
+                </Link>:null}
             </CategoryGP>
+            
           ))
         }
     </Container>
@@ -135,6 +135,10 @@ max-width:771px;
 margin:0 auto;
 position: relative;
 /**Job articles**/
+&.count0{
+  visibility: hidden;
+  display: none;
+}
 &.newscategory {
   max-width: 100%;
   margin: 0;
@@ -177,6 +181,7 @@ const HeadingGroupCategory = styled.h2`
   padding: 5px;
   &.header{
     background-color: white;
+    display: none;
   }  
   &.culture{
     background-color: #fff2cc;

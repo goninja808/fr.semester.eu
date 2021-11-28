@@ -15,13 +15,23 @@ const settings = {
           "month_tag":process.env.INDEX_SEMESTER,
           "menu": [
             [
-              "DEMO 0"+(parseInt(process.env.INDEX_SEMESTER) + 1)+"/2022",
+              "Home 0"+(parseInt(process.env.INDEX_SEMESTER) + 1)+"/2022",
               "/"
             ],
 
             [
-              "events",
-              "/record_cat/rock"
+              "Region of the month",
+              "/regionofthemonth"
+            ],
+
+            [
+              "Events",
+              "/occurences"
+            ],
+
+            [
+              "Facts",
+              "/facts"
             ]
           ],
           "featured": {
