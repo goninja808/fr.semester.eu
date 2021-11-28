@@ -23,7 +23,7 @@ const semestertheme = {
     theme: {
       autoPrefetch: "in-view",
       menu: [],
-      isMobileMenuOpen: true,
+      isMobileMenuOpen: false,
       featured: {
         showOnList: false,
         showOnPost: false,

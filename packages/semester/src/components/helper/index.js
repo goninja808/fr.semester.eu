@@ -21,3 +21,20 @@ const getPostsFromCategoryAndTag = ({ post }, categoryId, tagId) =>
 }
 
 
+const getPostsFromCategory = ({ post }, categoryId) =>
+  Object.keys(post)
+    .map(postID => post[postID])
+    .filter(({categories}) => categories.includes(parseInt(categoryId)) )
+
+    export const getPostsGroupedByCategory = (source ) =>  {
+      return Object.values(categoriesWidgetsHome)
+        .reduce((acc, categoryId) => {
+          const posts = getPostsFromCategory(source, categoryId ).slice(0,MAXIMUM_POSTS)
+          const category = source.category[categoryId]
+          const isNotHeader =!(source.category[categoryId].slug === 'header')
+          return [...acc, {posts, category, isNotHeader}]
+        }, [])
+
+}
+
+

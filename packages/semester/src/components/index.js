@@ -5,7 +5,7 @@ import Switch from "@frontity/components/switch";
 import Header from "./header/header";
 import List from "./list";
 import Post from "./post";
-import PerCatPost from "./perCatPost";
+import PerCatTagPost from "./perCatTagPost";
 import Loading from "./loading";
 import Title from "./title";
 import PageError from "./page-error";
@@ -57,8 +57,9 @@ const Theme = ({ state, actions, libraries }) => {
       <Main>
         <Switch>
           <Loading when={data.isFetching} />
-          <PerCatPost when={data.isHome} tagId={tagId} />
-          <ListRecords when={data.isRecordCat || data.isRecordArchive} />
+          <PerCatTagPost when={data.isHome} tagId={tagId} />
+          <PerCatTagPost when={data.route=='/category/french-semester/'}  />
+          <PerCatTagPost when={data.route=='/category/events/'}  />
           <List when={data.isArchive} />
           <Post when={data.isPostType} />
           <PageError when={data.isError} />
