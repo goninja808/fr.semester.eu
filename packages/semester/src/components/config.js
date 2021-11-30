@@ -1,6 +1,6 @@
 export const categoriesWidgetsHome = {
   "header" : 64,
-  "events": 72,
+  "events": 71,
   "culture": 24,
   "lifestyle": 28,
   "initiative": 37,
