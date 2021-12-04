@@ -127,15 +127,22 @@ const globalStyles = css`
 const HeadContainer = styled.div`
   display: flex;
   width:100%;
-  max-width:1600px;
+  max-width:1800px;
+  max-height:140px;
   justify-content: space-between;
   margin: 0 auto;
+  border-bottom:1rem;
   padding-top: 2.45rem;
   padding-right: 15px;
   padding-left: 10px;
   padding-bottom:1.25rem;
+  background-image: url('https://fr-semester.eu/wp-content/uploads/2021/12/central.bandeau-1.png');
+  background-blend-mode: multiply;
+  border: white;
+  background-size: cover;
   @media (min-width: 768px) {
     padding-top: 1.25rem;
+    max-height:180px;
     }
 `;
 const FooterContainer = styled.div`
@@ -148,4 +155,5 @@ const FooterContainer = styled.div`
 const Main = styled.div`
   display: flex;
   justify-content: center;
+  padding-top:22px
 `;

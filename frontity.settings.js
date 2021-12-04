@@ -13,12 +13,7 @@ const settings = {
       "state": {
         "theme": {
           "month_tag":process.env.INDEX_SEMESTER,
-          "menu": [
-            [
-              "Home 0"+(parseInt(process.env.INDEX_SEMESTER) + 1)+"/2022",
-              "/"
-            ],
-
+          "menu": [  
             [
               "Region of the month",
               "/regionofthemonth"
