@@ -21,12 +21,12 @@ const settings = {
 
             [
               "Events",
-              "/category/events/"
+              "/main-events/"
             ],
 
             [
               "Facts",
-              "/category/french-semester"
+              "/main-facts"
             ]
           ],
           "featured": {

@@ -28,10 +28,10 @@ const MenuOverlay = styled.div`
   background-color: #d7daf4;
   width: 100%;
   height: 100%;
+  top: 41px;
   overflow: hidden auto;
   position: absolute;
   z-index: 3;
-  top: 0;
   left: 0;
 `;
 

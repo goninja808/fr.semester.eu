@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { Global, css, connect, styled, Head } from "frontity";
-import { MonthRegionTags } from "./configTag"
+import { MonthRegionTags } from "./config_tag"
 import Switch from "@frontity/components/switch";
 import Header from "./header/header";
 import List from "./list";
 import Post from "./post";
-import PerCatTagPost from "./perCatTagPost";
+import perSemiStaticPost from "./stat-post";
+import PerCatTagPost from "./dyn-post";
 import Loading from "./loading";
 import Title from "./title";
 import PageError from "./page-error";
@@ -27,9 +28,11 @@ const Theme = ({ state, actions, libraries }) => {
   const data = state.source.get(state.router.link);
 
   const tagIndex = ((!!state.theme.month_tag) ? state.theme.month_tag : "0");
-  console.log("started with month " + (parseInt(tagIndex) + 1))
+  const month = Number.parseInt(tagIndex)  + 1;
+  const period = String("20220").concat(month) ;
+  console.log("started with period " + period );
   const tagId = parseInt(MonthRegionTags[parseInt(tagIndex)]);
-
+  console.log("started with region " + tagId );
   return (
     <>
       {/* Add some metatags to the <head> of the HTML. */}
@@ -57,9 +60,12 @@ const Theme = ({ state, actions, libraries }) => {
       <Main>
         <Switch>
           <Loading when={data.isFetching} />
-          <PerCatTagPost when={data.isHome} tagId={tagId} />
+          <perSemiStaticPost when={data.route=='/'} tagId={tagId} />
+          <perSemiStaticPost when={data.route=='/regionofthemonth/'} tagId={tagId} />
           <PerCatTagPost when={data.route=='/category/french-semester/'}  />
-          <PerCatTagPost when={data.route=='/category/events/'}  />
+          <PerCatTagPost when={data.route=='/category/events/'} period={period}  />
+          <PerCatTagPost when={data.route=='/main-events/'} period={period} />
+          <PerCatTagPost when={data.route=='/main-facts/'}/>
           <List when={data.isArchive} />
           <Post when={data.isPostType} />
           <PageError when={data.isError} />
