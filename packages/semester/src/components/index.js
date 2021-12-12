@@ -6,6 +6,7 @@ import Header from "./header/header";
 import List from "./list";
 import Post from "./post";
 import PerSemiStaticPost from "./stat-post";
+import PerCatPost from "./perCatPost";
 import PerCatTagPost from "./dyn-post";
 import Loading from "./loading";
 import Title from "./title";
@@ -61,7 +62,7 @@ const Theme = ({ state, actions, libraries }) => {
         <Switch>
           <Loading when={data.isFetching} />
           <PerSemiStaticPost when={data.route=='/'} tagId={tagId} />
-          <PerSemiStaticPost when={data.route=='/regionofthemonth/'} tagId={tagId} />
+          <PerCatPost when={data.route=='/regionofthemonth/'} tagId={tagId} />
           <PerCatTagPost when={data.route=='/category/french-semester/'}  />
           <PerCatTagPost when={data.route=='/category/events/'} period={period}  />
           <PerCatTagPost when={data.route=='/main-events/'} period={period} />
