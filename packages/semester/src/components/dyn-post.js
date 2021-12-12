@@ -35,32 +35,33 @@ const PerCatTagPeriodPost = ({ state, actions, libraries, period }) => {
   const data = state.source.get(state.router.link);
   // Get dynamic inicial list (event / fact main pages)
   const resultEventInPeriod = getEventInPeriod(state.source, period);
-
-  const eventDatesref = eval("['" + resultEventInPeriod.map(item => item.dateprefix).join("','") + "']");
+  var resultDateObjectInPeriod = [];
+  var countEventCategory = resultEventInPeriod.length;
+  const categColor=["grey","grey","yellow","pink","blue","green"]
+  for (let i = 0; i < countEventCategory; i++) {
+    var element = resultEventInPeriod[i]
+    var inPeriodEvents = element.dateprefix;
+    var category = element.category;
+    if (inPeriodEvents.length>0){
+      inPeriodEvents.forEach(eventDate=>
+        {
+          var aday = new DateObject(eventDate);
+          aday.color = categColor[i];
+          resultDateObjectInPeriod.push(aday);
+        }
+        )
+    }
+  };
+  const eventDatesref = resultDateObjectInPeriod;
 
   const resultFact = getFacts(state.source);
+  const onlyFact = resultFact.filter(item => (((item.category.name != "header")) && ((item.category.name != "Events"))))
   
   // Get the html2react component.
   const Html2React = libraries.html2react.Component;
 
 
-//  simulate a calendar setup (TODO: get from eventInPeriod)
-  const yesterday = new DateObject().subtract(1, "day");
-  const today = new DateObject();
-  const tomorrow = new DateObject().add(1, "day");
-  const aftertomorrow = new DateObject().add(2, "day");
-  yesterday.color = "green";
-  today.color = "blue";
-  tomorrow.color = "red";
-  aftertomorrow.color= "yellow";
- 
-  const [props, setProps] = useState({
-    multiple: true, 
-    value: [],
-    plugins: [
-      <DatePanel sort="color" markFocused/>,
-    ],
-  });
+
 
    
   /**
@@ -74,11 +75,47 @@ const PerCatTagPeriodPost = ({ state, actions, libraries, period }) => {
   return data.isReady ? (
     <FlexContainer>
          <Switch>
+         <Container when={state.router.link=='/category/events/'}>
+            <CategoryGP className='GroupCategory col-12 align-self-strech' >
+                <div className="GroupCategory-box col-md-12">
+                <Calendar  />
+                </div>
+            </CategoryGP>
+
+            { resultEventInPeriod.map(({ posts, category, isNotHeader }, index) => (
+            <CategoryGP key={index} className={`GroupCategory col-12 align-self-strech  count${posts.length}`} >
+              <HeadingGroupCategory  className={`${category.slug} `}>  <Illust src={`/static/images/${category.slug}_picto.png`} title={category.link}/> {category.name}</HeadingGroupCategory>
+                <div className="GroupCategory-box col-md-12">
+                 {posts.map((post, index) => (
+                  <article key={index}>
+                    <div>
+                        <div px={2}>
+                         {  <Link link={post.link}>
+                            <h2>
+                           <Html2React html={post.title.rendered} /> 
+                            </h2>
+                          </Link> }
+                          { !(isNotHeader) ? <HeaderMedia id={post.featured_media} /> : null}
+                          <Html2React html={post.excerpt.rendered} />
+                        </div>
+                      
+                    </div>
+                  </article>
+                  ))}
+                  </div>
+                  {isNotHeader?(<Link link={category.link}>See more <strong>{category.name}</strong> related posts</Link>):null}
+            </CategoryGP>
+          ))
+         }
+           </Container>
            <Container when={state.router.link=='/main-events/'}>
             <CategoryGP className='GroupCategory col-12 align-self-strech' >
                 <div className="GroupCategory-box col-md-12">
                 <Calendar relativePosition='top-center'
                  numberOfMonths={1} 
+                 disableMonthPicker="true"
+                 disableYearPicker="true"
+                 displayWeekNumbers="true"
                  minDate={`${new  DateObject("01/"+String(period).substring(4,6)+"/2022")}`}
                  value={eventDatesref}           
                   plugins={[
@@ -114,7 +151,7 @@ const PerCatTagPeriodPost = ({ state, actions, libraries, period }) => {
          }
            </Container>
            <Container when={state.router.link=='/main-facts/'}>
-            { resultFact.map(({ posts, category, isNotHeader }, index) => (
+            { onlyFact.map(({ posts, category, isNotHeader }, index) => (
             <CategoryGP key={index} className={`GroupCategory col-12 align-self-strech  count${posts.length}`} >
               <HeadingGroupCategory  className={`${category.slug} `}>  <Illust src={`/static/images/${category.slug}_picto.png`} title={category.link}/> {category.name}</HeadingGroupCategory>
                 <div className="GroupCategory-box col-md-12">

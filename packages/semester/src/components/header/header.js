@@ -55,9 +55,9 @@ const Logo = styled.div`
   background-position: left center;
   background-repeat: no-repeat;
   background-attachment: initial;
-  background-size: 120px;
-  width: 120px;
-  height: 122px; 
+  background-size: 130px;
+  width: 130px;
+  height: 132px; 
   background-image: url('https://fr-semester.eu/wp-content/uploads/2021/12/LogoM.png');
   @media (min-width: 768px) {
   width: 160px;

@@ -30,7 +30,7 @@ import colors from "react-multi-date-picker/plugins/colors";
  *
  * @returns The {@link Post} element rendered.
  */
-const perSemiStaticPost = ({ state, actions, libraries ,tagId}) => {
+const PerSemiStaticPost = ({ state, actions, libraries ,tagId}) => {
   // Get information about the current URL.
   const data = state.source.get(state.router.link);
   const resultEvent = getEventsForRegion(state.source,tagId);
@@ -64,8 +64,35 @@ const perSemiStaticPost = ({ state, actions, libraries ,tagId}) => {
   return data.isReady ? (
     <FlexContainer>
          <Switch>
-         <Container when={state.router.link=='/'}>
-            { postsPerCategory.map(({ posts, category, isNotHeader }, index) => (
+         <Container when={state.router.link=='/regionofthemonth/'}>
+         { 
+         resultEvent.map(({ posts, category, isNotHeader }, index) => (
+            <CategoryGP key={index} className={`GroupCategory col-12 align-self-strech  count${posts.length}`} >
+              <HeadingGroupCategory  className={`${category.slug} `}>  <Illust src={`/static/images/${category.slug}_picto.png`} title={category.link}/> {category.name}</HeadingGroupCategory>
+                <div className="GroupCategory-box col-md-12">
+                 {posts.map((post, index) => (
+                  <article key={index}>
+                    <div>
+                        <div px={2}>
+                         {  <Link link={post.link}>
+                            <h2>
+                           <Html2React html={post.title.rendered} /> 
+                            </h2>
+                          </Link> }
+                          { !(isNotHeader) ? <HeaderMedia id={post.featured_media} /> : null}
+                          <Html2React html={post.excerpt.rendered} />
+                        </div>                  
+                    </div>
+                  </article>
+                  ))}
+                  </div>
+                  {isNotHeader?<Link link={category.link}>
+                  <p>&gt;&gt; See more <strong>{category.name}</strong> related posts </p>
+                </Link>:null}
+            </CategoryGP>
+          ))}
+          <span/>
+          {resultFact.map(({ posts, category, isNotHeader }, index) => (
             <CategoryGP key={index} className={`GroupCategory col-12 align-self-strech  count${posts.length}`} >
               <HeadingGroupCategory  className={`${category.slug} `}>  <Illust src={`/static/images/${category.slug}_picto.png`} title={category.link}/> {category.name}</HeadingGroupCategory>
                 <div className="GroupCategory-box col-md-12">
@@ -92,42 +119,8 @@ const perSemiStaticPost = ({ state, actions, libraries ,tagId}) => {
           ))
          }
            </Container>
-           <Container when={state.router.link=='/category/events/'}>
-            
-            <CategoryGP className='GroupCategory col-12 align-self-strech' >
-                <div className="GroupCategory-box col-md-12">
-                <Calendar {...props}
-                onPropsChange={setProps} />
-                </div>
-            </CategoryGP>
-
-            { resultEvent.map(({ posts, category, isNotHeader }, index) => (
-            <CategoryGP key={index} className={`GroupCategory col-12 align-self-strech  count${posts.length}`} >
-              <HeadingGroupCategory  className={`${category.slug} `}>  <Illust src={`/static/images/${category.slug}_picto.png`} title={category.link}/> {category.name}</HeadingGroupCategory>
-                <div className="GroupCategory-box col-md-12">
-                 {posts.map((post, index) => (
-                  <article key={index}>
-                    <div>
-                        <div px={2}>
-                         {  <Link link={post.link}>
-                            <h2>
-                           <Html2React html={post.title.rendered} /> 
-                            </h2>
-                          </Link> }
-                          { !(isNotHeader) ? <HeaderMedia id={post.featured_media} /> : null}
-                          <Html2React html={post.excerpt.rendered} />
-                        </div>
-                      
-                    </div>
-                  </article>
-                  ))}
-                  </div>
-                  {isNotHeader?(<Link link={category.link}>See more <strong>{category.name}</strong> related posts</Link>):null}
-            </CategoryGP>
-          ))
-         }
-           </Container>
-           <Container when={state.router.link=='/category/french-semester/'}>
+           
+           <Container when={state.router.link=='/'}>
             { resultFact.map(({ posts, category, isNotHeader }, index) => (
             <CategoryGP key={index} className={`GroupCategory col-12 align-self-strech  count${posts.length}`} >
               <HeadingGroupCategory  className={`${category.slug} `}>  <Illust src={`/static/images/${category.slug}_picto.png`} title={category.link}/> {category.name}</HeadingGroupCategory>
@@ -161,7 +154,7 @@ const perSemiStaticPost = ({ state, actions, libraries ,tagId}) => {
   ) : null;
 };
 
-export default connect(perSemiStaticPost);
+export default connect(PerSemiStaticPost);
 const FlexContainer = styled.div`
   display: flex;
 `

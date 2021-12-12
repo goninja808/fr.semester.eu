@@ -5,7 +5,7 @@ import Switch from "@frontity/components/switch";
 import Header from "./header/header";
 import List from "./list";
 import Post from "./post";
-import perSemiStaticPost from "./stat-post";
+import PerSemiStaticPost from "./stat-post";
 import PerCatTagPost from "./dyn-post";
 import Loading from "./loading";
 import Title from "./title";
@@ -60,8 +60,8 @@ const Theme = ({ state, actions, libraries }) => {
       <Main>
         <Switch>
           <Loading when={data.isFetching} />
-          <perSemiStaticPost when={data.route=='/'} tagId={tagId} />
-          <perSemiStaticPost when={data.route=='/regionofthemonth/'} tagId={tagId} />
+          <PerSemiStaticPost when={data.route=='/'} tagId={tagId} />
+          <PerSemiStaticPost when={data.route=='/regionofthemonth/'} tagId={tagId} />
           <PerCatTagPost when={data.route=='/category/french-semester/'}  />
           <PerCatTagPost when={data.route=='/category/events/'} period={period}  />
           <PerCatTagPost when={data.route=='/main-events/'} period={period} />
@@ -138,7 +138,7 @@ const HeadContainer = styled.div`
   justify-content: space-between;
   margin: 0 auto;
   border-bottom:1rem;
-  padding-top: 2.45rem;
+  padding-top: 1.45rem;
   padding-right: 15px;
   padding-left: 10px;
   padding-bottom:1.25rem;
