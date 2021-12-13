@@ -66,11 +66,8 @@ const eventDatesref = resultDateObjectInPeriod;
          {postsPerCategory.map(({ posts, category, isNotHeader }, index) => (
             <CategoryGP key={index} className="GroupCategory col-12 align-self-strech">
               {isNotHeader ? (<HeadingGroupCategory  className={`${category.slug}`}>  <Illust src={`/static/images/${category.slug}_picto.png`} title={category.link}/> {category.name}</HeadingGroupCategory>):(<span/>)}
-<<<<<<< HEAD
-              { isNotHeader? <PostCount>{posts.length} posts </PostCount> : <span/>}
-=======
               {category.name=='Events' ?
-              
+             
               <Calendar relativePosition='top-center'
                  numberOfMonths={1} 
                  disableMonthPicker="true"
@@ -80,11 +77,10 @@ const eventDatesref = resultDateObjectInPeriod;
                  plugins={[
                   <DatePanel sort="color" markFocused/>,
                  ]} />
-           
+          
             : null}
               { (isNotHeader && posts.length>0)? <PostCount>{posts.length} posts </PostCount> : <span/>}
                 
->>>>>>> demo20211130
                 <div className="GroupCategory-box col-md-12">
                 {posts.map((post, index) => (
                   <article key={index}>
