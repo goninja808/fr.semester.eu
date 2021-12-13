@@ -62,7 +62,7 @@ const Theme = ({ state, actions, libraries }) => {
         <Switch>
           <Loading when={data.isFetching} />
           <PerSemiStaticPost when={data.route=='/'} tagId={tagId} />
-          <PerCatPost when={data.route=='/regionofthemonth/'} tagId={tagId} />
+          <PerCatPost when={data.route=='/regionofthemonth/'} tagId={tagId} period={period} />
           <PerCatTagPost when={data.route=='/category/french-semester/'}  />
           <PerCatTagPost when={data.route=='/category/events/'} period={period}  />
           <PerCatTagPost when={data.route=='/main-events/'} period={period} />

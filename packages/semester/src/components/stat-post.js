@@ -6,10 +6,6 @@ import { getFactsForRegion, getEventsForRegion } from "./helper";
 import {eventCategory} from "./config"
 import Switch from "@frontity/components/switch"; 
 import React,{useState} from "react"
-import { Calendar, DateObject} from "react-multi-date-picker"
-
-import DatePanel from "react-multi-date-picker/plugins/date_panel"
-import colors from "react-multi-date-picker/plugins/colors";
 
 /**
  * The Post component that Mars uses to render any kind of "post type", like
@@ -37,23 +33,7 @@ const PerSemiStaticPost = ({ state, actions, libraries ,tagId}) => {
   const resultFact = getFactsForRegion (state.source,tagId) ;
   // Get the html2react component.
   const Html2React = libraries.html2react.Component;
-//  const calendarRef = useRef<any>();
-  const yesterday = new DateObject().subtract(1, "day");
-  const today = new DateObject();
-  const tomorrow = new DateObject().add(1, "day");
-  const aftertomorrow = new DateObject().add(2, "day");
-  yesterday.color = "green";
-  today.color = "blue";
-  tomorrow.color = "red";
-  aftertomorrow.color= "yellow";
-  const [props, setProps] = useState({
-    multiple: true, 
-    value: [yesterday, today, tomorrow, aftertomorrow],
-    plugins: [
-      <DatePanel sort="color" markFocused/>,
-    ],
-  });
-   
+ 
   /**
    * Once the post has loaded in the DOM, prefetch both the
    * home posts and the list component so if the user visits
